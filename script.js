@@ -49,3 +49,21 @@ if (budgetDay >= 1200) {
     console.log('К сожалению, у вас уровень дохода ниже среднего');
 } else if (budgetDay <= 0) { 
     console.log('Что то пошло не так'); }
+
+
+let lang = prompt('Введите язык ru или en, чтобы увидеть дни недели: ');
+let EnRes = ('monday, tuesday, wednesday, thursday, friday, saturday, sunday');
+let RuRes = ('понедельник, вторник, среда, четверг, пятница, суббота, воскресенье');
+
+if (lang = 'ru') {
+    console.log(RuRes.split(' ,'));
+} else if(lang = 'en') {
+   console.log(EnRes.split(' ,'));
+}
+
+
+
+let namePerson = prompt('Введите интересующего преподавателя: ', 'Артем');
+let position = (namePerson === 'Артем') ? 'директор' : (namePerson === 'Максим') ? 'преподаватель' : 'студент';
+console.log(position);
+
