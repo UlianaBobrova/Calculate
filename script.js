@@ -1,12 +1,12 @@
 "use strict"
 
+
 let money, 
     start = function() {
         do { 
         money = prompt('Ваш месячный доход?', 50000);
-        
         }
-        while (isNaN(money) || money.trim() === '' || money === null || money.trim() === '0');
+        while (isNaN(money) || money === null || money.trim() === ''|| money === '0');
     };
 
   start();
@@ -31,13 +31,13 @@ let appData = {
             if(confirm('Есть ли у вас дополнительный заработок?')) {
 
             let itemIncome = prompt('Какой у вас есть дополнительный источник заработка?');
-                while (!isNaN(itemIncome) || itemIncome.trim() === '' || itemIncome === null) {
+                while (!isNaN(itemIncome) || itemIncome === null || itemIncome.trim() === '') {
                   itemIncome = prompt('Какой у вас есть дополнительный источник заработка?');
                      }
 
             let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете');
 
-                while (isNaN(cashIncome) || cashIncome.trim() === '' || cashIncome === '0' || cashIncome === null) {
+                while (isNaN(cashIncome) || cashIncome === null || cashIncome.trim() === '' || cashIncome === '0') {
                   cashIncome = prompt('Сколько в месяц вы на этом зарабатываете');
                      }
              
@@ -45,7 +45,9 @@ let appData = {
         }
 
        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'бензин, налоги, одежда');
-
+            while (!isNaN(addExpenses) || addExpenses === null || addExpenses.trim() === '') {
+                addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'бензин, налоги, одежда');
+            }
            appData.addExpenses = addExpenses.toLowerCase().split(', ');
 
            for(let key of appData.addExpenses) {
@@ -57,14 +59,14 @@ let appData = {
            for (let i = 0; i < 2; i++)    // ввод двух сотавляющих итоговой суммы (два прохода)
            {
                let str = prompt('Введите обязательную статью расходов?'); 
-               while (!isNaN(str) || str.trim() === '' || str === null) {
+               while (!isNaN(str) || str === null || str.trim() === '') {
                 str = prompt('Введите обязательную статью расходов?');
                }
        
            do {
                partSum = prompt('Во сколько это обойдется?'); 
            }
-            while (isNaN(partSum) || partSum.trim() === '' || partSum === null || partSum === '0'); 
+            while (isNaN(partSum) || partSum === null || partSum.trim() === '' || partSum === '0'); 
          
           appData.expenses[str] = +partSum; 
 
