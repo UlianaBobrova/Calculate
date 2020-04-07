@@ -51,8 +51,7 @@ let appData = {
            for(let key of appData.addExpenses) {
               console.log(key[0].toUpperCase() + key.slice(1));
          }
-                       
-           appData.deposit = confirm('Есть ли у вас депозит в банке?');
+
            let partSum = 0;
            
            for (let i = 0; i < 2; i++)    // ввод двух сотавляющих итоговой суммы (два прохода)
@@ -65,13 +64,33 @@ let appData = {
             while (isNaN(partSum) || partSum.trim() === '' || partSum === null || partSum.trim() === '0'); 
          
           appData.expenses[str] = +partSum; 
+
         }
-     }
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
+     },
+
+    getInfoDeposit: function() {        //если есть депозит в банке,то задаем эти вопросы
+
+        if(appData.deposit) {
+            appData.percentDeposit = prompt('Какой годовой процент?', '10');
+        
+                while (isNaN(parseFloat(appData.percentDeposit)) || appData.percentDeposit.trim() === '0') {
+                    appData.percentDeposit = prompt('Какой годовой процент?');
+                }
+        
+            appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+        
+                while (isNaN(parseFloat(appData.moneyDeposit)) || appData.moneyDeposit.trim() === '0') {
+                    appData.moneyDeposit = prompt('Какая сумма заложена?');
+                }
+            }
+        }
+
 };
 
-console.dir(appData.addExpenses);
-
 appData.asking();
+
+appData.getInfoDeposit();
 
 appData.budget = money;
 
@@ -122,25 +141,7 @@ appData.getStatusIncome = function() {
 };
     console.log(appData.getStatusIncome());
 
-
-    appData.getInfoDeposit = function() {        //если есть депозит в банке,то задаем эти вопросы
-
-        if(appData.deposit) {
-            appData.percentDeposit = prompt('Какой годовой процент?', '10');
-        
-                while (isNaN(parseFloat(appData.percentDeposit)) || appData.percentDeposit.trim() === '0') {
-                    appData.percentDeposit = prompt('Какой годовой процент?');
-                }
-        
-            appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
-        
-                while (isNaN(parseFloat(appData.moneyDeposit)) || appData.moneyDeposit.trim() === '0') {
-                    appData.moneyDeposit = prompt('Какая сумма заложена?');
-                }
-            }
-        };
-        
-        appData.getInfoDeposit();
+    
 
 appData.calcSavedMoney = function() {         //сколько заработает в указанный период
     return appData.budgetMonth * appData.period;
