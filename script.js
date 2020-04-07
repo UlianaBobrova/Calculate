@@ -6,7 +6,7 @@ let money,
         money = prompt('Ваш месячный доход?', 50000);
         
         }
-        while (isNaN(money) || money.trim() === '' || money === null || money.trim() === '0')
+        while (isNaN(money) || money.trim() === '' || money === null || money.trim() === '0');
     };
 
   start();
@@ -37,7 +37,7 @@ let appData = {
 
             let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете');
 
-                while (isNaN(cashIncome) || cashIncome.trim() === '' || cashIncome.trim() === '0') {
+                while (isNaN(cashIncome) || cashIncome.trim() === '' || cashIncome === '0' || cashIncome === null) {
                   cashIncome = prompt('Сколько в месяц вы на этом зарабатываете');
                      }
              
@@ -62,9 +62,9 @@ let appData = {
                }
        
            do {
-               partSum = prompt('Во сколько это обойдется?', 2500); 
+               partSum = prompt('Во сколько это обойдется?'); 
            }
-            while (isNaN(partSum) || partSum.trim() === '' || partSum === null || partSum.trim() === '0'); 
+            while (isNaN(partSum) || partSum.trim() === '' || partSum === null || partSum === '0'); 
          
           appData.expenses[str] = +partSum; 
 
@@ -77,13 +77,13 @@ let appData = {
         if(appData.deposit) {
             appData.percentDeposit = prompt('Какой годовой процент?', '10');
         
-                while (isNaN(parseFloat(appData.percentDeposit)) || appData.percentDeposit.trim() === '0') {
+                while (isNaN(parseFloat(appData.percentDeposit)) || appData.percentDeposit === '0') {
                     appData.percentDeposit = prompt('Какой годовой процент?');
                 }
         
             appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
         
-                while (isNaN(parseFloat(appData.moneyDeposit)) || appData.moneyDeposit.trim() === '0') {
+                while (isNaN(parseFloat(appData.moneyDeposit)) || appData.moneyDeposit === '0') {
                     appData.moneyDeposit = prompt('Какая сумма заложена?');
                 }
             }
