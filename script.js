@@ -153,6 +153,61 @@ appData.calcSavedMoney = function() {         //сколько заработа�
 };
 
 
+let buttonStart = document.querySelector('#start');
+console.log(buttonStart);
+
+let buttonIncome = document.getElementsByTagName('button')[0];
+console.log(buttonIncome);
+
+let buttonExpenses = document.getElementsByTagName('button')[1];
+console.log(buttonExpenses);
+
+let checkBox = document.querySelector('#deposit-check');
+console.log(checkBox);
+
+
+let adIncomeItem1 = document.querySelectorAll('.additional_income-item')[0];
+console.log(adIncomeItem1);
+let adIncomeItem2 = document.querySelectorAll('.additional_income-item')[1];
+console.log(adIncomeItem2);
+
+
+let input1 = document.querySelectorAll('.result > div > input')[1];
+console.log(input1);
+let input2 = document.querySelectorAll('.result > div > input')[2];
+console.log(input2);
+let input3 = document.querySelectorAll('.result > div > input')[3];
+console.log(input3);
+let input4 = document.querySelectorAll('.result > div > input')[4];
+console.log(input4);
+let input5 = document.querySelectorAll('.result > div > input')[5];
+console.log(input5);
+let input6 = document.querySelectorAll('.result > div > input')[6];
+console.log(input6);
+
+let range = document.querySelector('.period-select');
+console.log(range);
+
+let targetAmount = document.querySelector('.target-amount');
+console.log(targetAmount);
+
+let additionalExpensesItem = document.querySelector('.additional_expenses-item');
+console.log(additionalExpensesItem);
+
+let expensesTitle = document.querySelectorAll('.expenses-title')[1];
+console.log(expensesTitle);
+
+let expensesAmount = document.querySelector('.expenses-amount');
+console.log(expensesAmount);
+
+let incomeTitle = document.querySelectorAll('.income-title')[1];
+console.log(incomeTitle);
+let incomeAmount = document.querySelector('.income-amount');
+console.log(incomeAmount);
+
+let salaryAmount = document.querySelector('.salary-amount');
+console.log(salaryAmount);
+
 
 // for(let item in appData) {
 //     console.log('Наша программа включает в себя данные: ' + item + ': '  + appData[item]);
