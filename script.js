@@ -72,10 +72,11 @@ let appData = {
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         incomePeriodValue.value = appData.calcSavedMoney();
-        //incomePeriodValue.value.addEventListener('input', appData.calcSavedMoney());
-       
+        periodSelect.addEventListener('change', function() {
+            incomePeriodValue.value = appData.calcSavedMoney();
+        }); 
     },
-
+    
  //Увеличиваем кол-во полей Обязательные расходы
     addExpensesBlock: function() {       
         //console.log(expensesItem.parentNode);   //обращаемся к родителю expensesItem
@@ -380,3 +381,12 @@ else {
 // let position = (namePerson === 'Артем') ? 'директор' : (namePerson === 'Максим') ? 'преподаватель' : 'студент';
 // console.log(position);
 
+ // blocked: function() {
+    // document.querySelectorAll('.data input[type=text]').forEach(function(item) {
+    //     item.disabled = true;
+    // });
+
+    // start.style.display = 'none';
+    // cancel.style.display = 'block';
+
+    // },
