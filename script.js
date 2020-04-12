@@ -51,7 +51,7 @@ let appData = {
             return;
         }
         appData.budget = +salaryAmount.value;
-    console.log(this);
+   
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.getExpenses();
@@ -79,7 +79,10 @@ let appData = {
   
  //Блокировка полей после нажатия кнопки Рассчитать и очистка полей кнопка Сброс    
     blocked: function() {
-        document.querySelectorAll('.data input[type=text]').forEach(function(item) {
+
+        let dataInput =  document.querySelectorAll('.data input[type=text]');
+
+        dataInput.forEach(function(item) {
             item.disabled = true;
         });
     
@@ -87,7 +90,7 @@ let appData = {
         cancel.style.display = 'block';
 
         cancel.addEventListener('click', function() {
-            document.querySelectorAll('.calc input[type=text]').forEach(function(item) {
+        document.querySelectorAll('.calc input[type=text]').forEach(function(item) {
                 item.disabled = false;
                 item.value = ''; 
          });
@@ -136,6 +139,7 @@ let appData = {
     }, this);
  }, 
 
+ //Суммирование дополнительных доходов
     getIncome: function() {
 
     incomeItems.forEach(function(item) {
@@ -151,13 +155,14 @@ let appData = {
     }
 },
 
+//
     getAddExpenses: function() {
 
       let addExpenses = additionalExpensesItem.value.split(',');
       addExpenses.forEach(function(item){
           item = item.trim();
         if (item !== '') {
-            this.addExpenses.push(item);               //??????
+            this.addExpenses.push(item);             
         }
     }, this);
 },
@@ -227,6 +232,7 @@ let appData = {
     calcSavedMoney: function() {         
         return this.budgetMonth * periodSelect.value;
        },
+
     };
 
 //Значение бегунка range
@@ -236,9 +242,9 @@ let periodAmountChange = function(event) {
 periodSelect.addEventListener('input', periodAmountChange);
 
 
-start.addEventListener('click', appData.start);
-btnPlusExpenses.addEventListener('click', appData.addExpensesBlock);
-btnPlusIncome.addEventListener('click', appData.addIncomeBlock);
+start.addEventListener('click', appData.start.bind(appData));
+btnPlusExpenses.addEventListener('click', appData.addExpensesBlock.bind(appData));
+btnPlusIncome.addEventListener('click', appData.addIncomeBlock.bind(appData));
 
 
 //console.log('Сумма обязательных расходов за месяц: ', + appData.expensesMonth + ' рублей');
