@@ -50,18 +50,17 @@ let appData = {
             alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
             return;
         }
-        appData.budget = +salaryAmount.value;
+        this.budget = +salaryAmount.value;
    
-        appData.getAddExpenses();
-        appData.getAddIncome();
-        appData.getExpenses();
-        appData.getIncome();
-        appData.getExpensesMonth();
-        appData.getBudget();
-        appData.getTargetMonth();
-     
-        appData.showResult();
-        appData.blocked();
+        this.getAddExpenses();
+        this.getAddIncome();
+        this.getExpenses();
+        this.getIncome();
+        this.getExpensesMonth();
+        this.getBudget();
+        this.getTargetMonth();
+        this.showResult();
+        this.blocked();
     },
 
     showResult: function() {
@@ -71,9 +70,9 @@ let appData = {
         additionalExpensesValue.value = this.addExpenses.join(', ');
         additionalIncomeValue.value = this.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
-        incomePeriodValue.value = appData.calcSavedMoney();
+        incomePeriodValue.value = this.calcSavedMoney();
         periodSelect.addEventListener('input', function() {
-            incomePeriodValue.value = appData.calcSavedMoney();
+            incomePeriodValue.value = appData.calcSavedMoney.apply(appData);
         }); 
     },
   
@@ -155,7 +154,7 @@ let appData = {
     }
 },
 
-//
+//записываем и выводим возможные доходы
     getAddExpenses: function() {
 
       let addExpenses = additionalExpensesItem.value.split(',');
