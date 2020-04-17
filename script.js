@@ -45,13 +45,14 @@ const AppData = function() {
 };
 
 AppData.prototype.eventListeners = function() {
+  
     let periodAmountChange = function(event) {
         periodAmount.textContent = event.target.value;    //element.target.value
     };
-
     periodSelect.addEventListener('input', periodAmountChange);
     
-    start.addEventListener('click', appData.start.bind(appData));  //!!!!!!
+
+    start.addEventListener('click', function() { appData.start() }); 
     btnPlusExpenses.addEventListener('click', this.addExpensesBlock);
     btnPlusIncome.addEventListener('click',this.addIncomeBlock);
 };   
@@ -77,6 +78,8 @@ AppData.prototype.start = function() {
     this.showResult();
     this.blocked();
 };
+
+
 
 AppData.prototype.showResult = function() {
     const _this = this;
@@ -148,7 +151,7 @@ let itemExpenses = item.querySelector('.expenses-title').value;
 let cashExpenses = item.querySelector('.expenses-amount').value;
 
 if(itemExpenses !== '' && cashExpenses !== '') {
-    this.expenses[itemExpenses] = cashExpenses;
+    appData.expenses[itemExpenses] = cashExpenses;
     
 }
 }, this);
@@ -243,10 +246,13 @@ AppData.prototype.getInfoDeposit = function() {
         }
     };
 
+
+
 //сколько заработает в указанный период
 AppData.prototype.calcSavedMoney = function() {         
     return this.budgetMonth * periodSelect.value;
    };
+
 
 
 
