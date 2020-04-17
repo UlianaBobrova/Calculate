@@ -51,8 +51,7 @@ AppData.prototype.eventListeners = function() {
 
     periodSelect.addEventListener('input', periodAmountChange);
     
-    // start.addEventListener('click', appData.start.bind(appData));
-    start.addEventListener('click', this.start);
+    start.addEventListener('click', appData.start.bind(appData));  //!!!!!!
     btnPlusExpenses.addEventListener('click', this.addExpensesBlock);
     btnPlusIncome.addEventListener('click',this.addIncomeBlock);
 };   
