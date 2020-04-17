@@ -1,6 +1,6 @@
 "use strict"
 //кнопка Рассчитать
-let start = document.querySelector('#start'),
+const start = document.querySelector('#start'),
 //Кнопки Плюс
     btnPlusIncome = document.getElementsByTagName('button')[0];
 
@@ -46,15 +46,15 @@ const AppData = function() {
 
 AppData.prototype.eventListeners = function() {
   
-    let periodAmountChange = function(event) {
+    const periodAmountChange = function(event) {
         periodAmount.textContent = event.target.value;    //element.target.value
     };
     periodSelect.addEventListener('input', periodAmountChange);
     
 
-    start.addEventListener('click', function() { appData.start() }); 
-    btnPlusExpenses.addEventListener('click', this.addExpensesBlock);
-    btnPlusIncome.addEventListener('click',this.addIncomeBlock);
+    start.addEventListener('click', function() { appData.start()}); 
+    btnPlusExpenses.addEventListener('click', function() {appData.addExpensesBlock()});
+    btnPlusIncome.addEventListener('click',function() { appData.addIncomeBlock()});
 };   
 
 const appData = new AppData();  
@@ -98,17 +98,18 @@ AppData.prototype.showResult = function() {
     //Блокировка полей после нажатия кнопки Рассчитать и очистка полей кнопка Сброс    
 AppData.prototype.blocked = function() {
 
-    let dataInput =  document.querySelectorAll('.data input[type=text]');
+    const dataInput =  document.querySelectorAll('.data input[type=text]');
 
-    dataInput.forEach(function(item) {
+    dataInput.forEach((item) => {
         item.disabled = true;
     });
 
     start.style.display = 'none';
     cancel.style.display = 'block';
 
-    cancel.addEventListener('click', function() {
-    document.querySelectorAll('.calc input[type=text]').forEach(function(item) {
+    cancel.addEventListener('click', function() { 
+
+    document.querySelectorAll('.calc input[type=text]').forEach((item) => {
             item.disabled = false;
             item.value = ''; 
      });
@@ -146,27 +147,27 @@ AppData.prototype.addIncomeBlock = function() {
 //Получение всех расходов и запись в объект
 AppData.prototype.getExpenses = function()  {
 
-expensesItems.forEach(function(item) { 
+expensesItems.forEach((item) => { 
 let itemExpenses = item.querySelector('.expenses-title').value;
 let cashExpenses = item.querySelector('.expenses-amount').value;
 
 if(itemExpenses !== '' && cashExpenses !== '') {
-    appData.expenses[itemExpenses] = cashExpenses;
+    this.expenses[itemExpenses] = cashExpenses;
     
 }
-}, this);
+});
 }; 
 
 //Суммирование дополнительных доходов
 AppData.prototype.getIncome = function() {
 
-incomeItems.forEach(function(item) {
+incomeItems.forEach((item) => {
     let itemIncome = item.querySelector('.income-title').value;
     let cashIncome = item.querySelector('.income-amount').value;
     if(itemIncome !== '' && cashIncome !== '') {
         this.income[itemIncome] = cashIncome;  
     }
-}, this);
+});
 
 for (let key in this.income) {
     this.incomeMonth += +this.income[key];
@@ -177,27 +178,27 @@ for (let key in this.income) {
 AppData.prototype.getAddExpenses = function() {
 
   let addExpenses = additionalExpensesItem.value.split(',');
-  addExpenses.forEach(function(item){
+  addExpenses.forEach((item) => {
       item = item.trim();
     if (item !== '') {
         this.addExpenses.push(item);             
     }
-}, this);
+});
 };
 
 //Ввод возможных доходов
 AppData.prototype.getAddIncome = function() {
 
-    additionalIncomeItem.forEach(function(item) {
+    additionalIncomeItem.forEach((item) => {
     let itemValue = item.value.trim();
     if (item.value !== " ") {
         this.addIncome.push(itemValue);
     }
-},this);
+});
 };
 
 //считаем сумму всех обязательных расходов
-AppData.prototype.getExpensesMonth = function () {
+AppData.prototype.getExpensesMonth = function() {
 
     for (let key in this.expenses) {       
     this.expensesMonth += +this.expenses[key];
