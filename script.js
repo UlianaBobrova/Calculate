@@ -162,24 +162,26 @@ blocked() {
 
     dataInput.forEach((item) => {
         item.disabled = true;
-    });
+        });
 
     start.style.display = 'none';
     cancel.style.display = 'block';
 
     cancel.addEventListener('click', () => { 
-     //   '.calc input[type=text]'
+
     document.querySelectorAll('.calc input').forEach((item) => {
             item.disabled = false;
             item.value = ''; 
     });
-    cancel.style.display = 'none';
-    depositCheck.checked = false;
-    depositBank.style.display = 'none';
-    depositAmount.style.display = 'none';
-    depositPercent.style.display = 'none';
-    start.style.display = 'block';
-    });
+        cancel.style.display = 'none';
+        depositCheck.checked = false;
+        depositBank.value = '';
+        depositBank.style.display = 'none';
+        depositAmount.style.display = 'none';
+        depositPercent.style.display = 'none';
+        start.style.display = 'block';
+          }
+);
 }
 
 //Увеличиваем кол-во полей Обязательные расходы (+)
@@ -190,10 +192,10 @@ addExpensesBlock() {
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, btnPlusExpenses);
     expensesItems = document.querySelectorAll('.expenses-items');
 
-    if(expensesItems.length === 3) {
+     if(expensesItems.length === 3) {
      btnPlusExpenses.style.display = 'none';
+       }
     }
-}
 
 // Увеличиваем кол-во полей Дополнительный доход (+)
 addIncomeBlock() {
@@ -204,8 +206,8 @@ addIncomeBlock() {
    
     if(incomeItems.length === 3) {
         btnPlusIncome.style.display = 'none';
-    }
-}
+       }
+     }
 
 // addExIncBlock(itemSelector, btnPlus) { 
 
@@ -229,14 +231,14 @@ getExpInc() {
 
         if(itemTitle !== '' && itemAmount !== '') {
             this[startStr][itemTitle] = itemAmount; 
-        }
-    }
+              }
+    };
     expensesItems.forEach(count);
     incomeItems.forEach(count);
 
     for (let key in this.income) {
         this.incomeMonth += +this.income[key];
-    }
+          }
  } 
     
 // записываем и выводим возможные расходы
@@ -245,14 +247,12 @@ getAddExpenses() {
     const addExpenses1 = additionalExpensesItem.value.split(',');
 
     addExpenses1.forEach((item) => {
-
-    let itemValue = item.trim();
-
+        let itemValue = item.trim();
     if (itemValue !== '') {
         this.addExpenses.push(itemValue);             
+        }
+      });
     }
-    });
-}
 
 
 //Ввод возможных доходов
@@ -263,9 +263,9 @@ getAddIncome() {
     const itemValue = item.value.trim();
     if (itemValue !== '') {
         this.addIncome.push(itemValue);
-    };
-    });
-}
+        };
+      });
+    }
 
 // getAddExpInc(data, arrPush) { 
 
@@ -288,8 +288,8 @@ getExpensesMonth() {
 
     for (let key in this.expenses) {       
     this.expensesMonth += +this.expenses[key];
+      }
     }
-}
 
 //возвращает накопления за месяц(бюджет - обязат.расходы)
 getBudget() {  
@@ -297,13 +297,13 @@ getBudget() {
     const monthDeposit = this.moneyDeposit * this.percentDeposit / 100;
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth + monthDeposit; 
     this.budgetDay = Math.floor(this.budgetMonth/30); 
-}
+    }
 
 //считаем период достижения цели  
 getTargetMonth() {  
 
     return targetAmount.value / this.budgetMonth;
-}
+    }
      
 getStatusIncome() {
 
@@ -315,7 +315,7 @@ getStatusIncome() {
              return ('К сожалению, у вас уровень дохода ниже среднего');
         } else if (this.budgetDay <= 0) { 
              return ('Что то пошло не так'); }
-}
+    }
 
 //если есть депозит в банке,то задаем эти вопросы 
 getInfoDeposit() { 
@@ -333,21 +333,21 @@ getInfoDeposit() {
             // }
         this.moneyDeposit = depositAmount.value; {
     
-            // while (isNaN(parseFloat(this.moneyDeposit)) || this.moneyDeposit === '') {
-            //     // this.moneyDeposit = prompt('Какая сумма заложена?');
-            //     alert('Введите только цифры');
-            //     //start.disabled = true;
-            //     return;
+            while (isNaN(parseFloat(this.moneyDeposit)) || this.moneyDeposit === '') {
+                // this.moneyDeposit = prompt('Какая сумма заложена?');
+                alert('Введите только цифры');
+                //start.disabled = true;
+                return;
+            }
         }
     }
 }
-
 //сколько заработает в указанный период  
 calcSavedMoney() {  
 
     return this.budgetMonth * periodSelect.value;
+   }
 }
-
 
 const appData = new AppData();  
 
